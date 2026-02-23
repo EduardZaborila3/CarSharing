@@ -1,0 +1,103 @@
+{
+    "VIN1001": {
+        "make": "Dacia",
+        "model": "Logan",
+        "color": "Alb",
+        "year": 2018,
+        "price_per_day": 85,
+        "currency": "RON",
+        "location": "Piata Unirii",
+        "status": "available"
+    },
+    "VIN1002": {
+        "make": "Renault",
+        "model": "Clio",
+        "color": "Rosu",
+        "year": 2019,
+        "price_per_day": 100,
+        "currency": "RON",
+        "location": "Titan",
+        "status": "available"
+    },
+    "VIN1003": {
+        "make": "Volkswagen",
+        "model": "Golf 7",
+        "color": "Gri",
+        "year": 2019,
+        "price_per_day": 130,
+        "currency": "RON",
+        "location": "Gara de Nord",
+        "status": "rented"
+    },
+    "VIN1004": {
+        "make": "Ford",
+        "model": "Kuga",
+        "color": "Albastru",
+        "year": 2020,
+        "price_per_day": 180,
+        "currency": "RON",
+        "location": "Drumul Taberei",
+        "status": "available"
+    },
+    "VIN1005": {
+        "make": "Toyota",
+        "model": "Corolla Hybrid",
+        "color": "Alb",
+        "year": 2021,
+        "price_per_day": 200,
+        "currency": "RON",
+        "location": "Aeroport Otopeni",
+        "status": "available"
+    },
+    "VIN1006": {
+        "make": "Skoda",
+        "model": "Octavia",
+        "color": "Negru",
+        "year": 2022,
+        "price_per_day": 220,
+        "currency": "RON",
+        "location": "Militari",
+        "status": "available"
+    },
+    "VIN1007": {
+        "make": "BMW",
+        "model": "Seria 3",
+        "color": "Argintiu",
+        "year": 2023,
+        "price_per_day": 350,
+        "currency": "RON",
+        "location": "Baneasa Shopping City",
+        "status": "rented"
+    },
+    "VIN1008": {
+        "make": "Audi",
+        "model": "A5",
+        "color": "Negru Mate",
+        "year": 2023,
+        "price_per_day": 380,
+        "currency": "RON",
+        "location": "Herastrau",
+        "status": "available",
+        "rented_by": null
+    },
+    "VIN1009": {
+        "make": "Tesla",
+        "model": "Model 3",
+        "color": "Alb",
+        "year": 2023,
+        "price_per_day": 400,
+        "currency": "RON",
+        "location": "Promenada Mall",
+        "status": "available"
+    },
+    "VIN1010": {
+        "make": "Mercedes-Benz",
+        "model": "C-Class",
+        "color": "Negru",
+        "year": 2024,
+        "price_per_day": 500,
+        "currency": "RON",
+        "location": "Calea Victoriei",
+        "status": "available"
+    }
+}
