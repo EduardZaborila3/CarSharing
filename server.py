@@ -13,6 +13,7 @@ USERS_FILE = "users.json"
 CARS_FILE = "cars.json"
 
 company_cars = {}
+users_who_queried_cars = set()
 
 registered_users = {}
 logged_in_users = set()
@@ -73,27 +74,63 @@ def handle_query_cars(message):
         
     payload_data = json.dumps(available_cars)
 
+    users_who_queried_cars.add(message.client_id)
     return CommunicationProtocol(message.client_id, SUCCESS, payload_data)
+
+def unlock_car(vin):
+    print(f"[TELEMATICS] Unlocking car with VIN {vin}")
+    print(f"[TELEMATICS] Car with VIN {vin} unlocked successfully")
+    return True
+
+def lock_car(vin):
+    print(f"[TELEMATICS] Locking car with VIN {vin}")
+    print(f"[TELEMATICS] Car with VIN {vin} locked successfully")
+    return True
 
 def handle_start_rental(message):
     vin = message.payload
+    user_driver_license_number = registered_users[message.client_id]["driver_license"]
+    if user_driver_license_number is None or len(user_driver_license_number) != 6:
+        return CommunicationProtocol(message.client_id, FAILED, "Driver license not found or invalid")
+    if message.client_id not in users_who_queried_cars:
+        return CommunicationProtocol(message.client_id, FAILED, "You need to query the list of available cars before renting")
     if vin in company_cars and company_cars[vin].get("status") == "available":
         company_cars[vin]["status"] = "rented"
         company_cars[vin]["rented_by"] = message.client_id
         save_cars()
+        unlock_car(vin)
         print(f"Car with VIN {vin} has been rented by user with ID {message.client_id}")
         return CommunicationProtocol(message.client_id, SUCCESS, "Rental started")
     else:
         return CommunicationProtocol(message.client_id, FAILED, "Car not available")
     
+import random
+
+def check_car_state(vin):
+    print(f"[TELEMATICS] Check car integrity and state for {vin}")
+    
+    state = random.choices(["OK", "OPEN DOOR", "HIT"], weights=[80, 10, 10])[0]
+    
+    if state == "OPEN_DOOR":
+        return False, "Car doors are open. Please close them and try again"
+    elif state == "HIT":
+        return False, "Hit detected on the vehicle."
+    
+    return True, "Car state is OK."
+
 def handle_end_rental(message):
     vin = message.payload
 
     if vin in company_cars and company_cars[vin].get("status") == "rented":
         if company_cars[vin]["rented_by"] == message.client_id:
+            is_ok, state_message = check_car_state(vin)
+            if not is_ok:
+                print(f"End rental denied for car with VIN {vin} due to state: {state_message}")
+                return CommunicationProtocol(message.client_id, FAILED, state_message)
             company_cars[vin]["status"] = "available"
             company_cars[vin]["rented_by"] = None
             save_cars()
+            lock_car(vin)
             print(f"Client with ID {message.client_id} returned car with VIN {vin}")
             return CommunicationProtocol(message.client_id, SUCCESS, "Rental ended")
         else:

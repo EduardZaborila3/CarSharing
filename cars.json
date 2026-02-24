@@ -17,7 +17,8 @@
         "price_per_day": 100,
         "currency": "RON",
         "location": "Titan",
-        "status": "available"
+        "status": "available",
+        "rented_by": null
     },
     "VIN1003": {
         "make": "Volkswagen",
@@ -57,7 +58,8 @@
         "price_per_day": 220,
         "currency": "RON",
         "location": "Militari",
-        "status": "available"
+        "status": "rented",
+        "rented_by": 101
     },
     "VIN1007": {
         "make": "BMW",
@@ -88,7 +90,8 @@
         "price_per_day": 400,
         "currency": "RON",
         "location": "Promenada Mall",
-        "status": "available"
+        "status": "available",
+        "rented_by": null
     },
     "VIN1010": {
         "make": "Mercedes-Benz",
@@ -98,6 +101,7 @@
         "price_per_day": 500,
         "currency": "RON",
         "location": "Calea Victoriei",
-        "status": "available"
+        "status": "available",
+        "rented_by": null
     }
 }

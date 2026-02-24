@@ -82,6 +82,8 @@ def logged_in_menu(client_id):
             else:
                 print("Logout failed")
             return
+        else:
+            print("Invalid choice")
 
 def menu():
     my_client_id = None
